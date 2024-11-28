@@ -1870,6 +1870,7 @@ UV_EXTERN int uv_gettimeofday(uv_timeval64_t* tv);
 typedef void (*uv_thread_cb)(void* arg);
 
 UV_EXTERN int uv_thread_create(uv_thread_t* tid, uv_thread_cb entry, void* arg);
+UV_EXTERN int uv_thread_detach(uv_thread_t* tid);
 
 typedef enum {
   UV_THREAD_NO_FLAGS = 0x00,
@@ -1899,6 +1900,9 @@ UV_EXTERN int uv_thread_getcpu(void);
 UV_EXTERN uv_thread_t uv_thread_self(void);
 UV_EXTERN int uv_thread_join(uv_thread_t *tid);
 UV_EXTERN int uv_thread_equal(const uv_thread_t* t1, const uv_thread_t* t2);
+UV_EXTERN int uv_thread_setname(const char* name);
+UV_EXTERN int uv_thread_getname(uv_thread_t* tid, char* name, size_t size);
+
 
 /* The presence of these unions force similar struct layout. */
 #define XX(_, name) uv_ ## name ## _t name;
